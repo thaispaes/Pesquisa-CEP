@@ -6,11 +6,11 @@ import 'package:pesquisa_cep/views/home_page.dart';
 void main() {
   HttpOverrides.global = MyHttpOverrides();
   runApp(MaterialApp(
-    debugShowCheckedModeBanner: false,
+    debugShowCheckedModeBanner: false, //Barra do Debug
     home: HomePage(),
     theme: ThemeData(brightness: Brightness.light, primarySwatch: Colors.amber),
     darkTheme: ThemeData(
-      brightness: Brightness.dark,
+      brightness: Brightness.dark, primarySwatch: Colors.lightBlue
     ),
   ));
 }

@@ -7,7 +7,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  var _searchCepController = TextEditingController();
+  final _searchCepController = TextEditingController();
   bool _loading = false;
   bool _enableField = true;
   String? _result;
@@ -22,7 +22,8 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Consultar CEP'),
+        leading: Icon(Icons.search),
+        title: const Text('Consultar CEP'),
       ),
       body: SingleChildScrollView(
         padding: EdgeInsets.all(20.0),
@@ -54,8 +55,8 @@ class _HomePageState extends State<HomePage> {
       padding: const EdgeInsets.only(top: 20.0),
       child: FloatingActionButton(
         onPressed: _searchCep,
-        child: _loading ? _circularLoading() : Text('Consultar'),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+        child: _loading ? _circularLoading() : Text('Consultar'),
       ),
     );
   }

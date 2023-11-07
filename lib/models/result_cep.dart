@@ -21,7 +21,7 @@ class ResultCep {
     this.unidade,
     this.ibge,
     this.gia,
-  });
+  }); // Construtor
 
   factory ResultCep.fromJson(String str) => ResultCep.fromMap(json.decode(str));
 
@@ -37,7 +37,7 @@ class ResultCep {
     unidade: json["unidade"] == null ? null : json["unidade"],
     ibge: json["ibge"] == null ? null : json["ibge"],
     gia: json["gia"] == null ? null : json["gia"],
-  );
+  ); //Salva as informações do Json em variáveis
 
   Map<String, dynamic> toMap() => {
     "cep": cep == null ? null : cep,
@@ -49,5 +49,5 @@ class ResultCep {
     "unidade": unidade == null ? null : unidade,
     "ibge": ibge == null ? null : ibge,
     "gia": gia == null ? null : gia,
-  };
+  }; //Transforma a informação das variáveis em json
 }
