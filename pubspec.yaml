@@ -25,4 +25,27 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  assets:
+    - lib/assets/fonts
+  fonts:
+    - family: Raleway
+      fonts:
+        - asset: lib/assets/fonts/Raleway/Raleway-Italic.ttf
+        - asset: lib/assets/fonts/Raleway/Raleway-BoldItalic.ttf
+          style: italic
+
+    - family: RobotoMono
+      fonts:
+        - asset: lib/assets/fonts/Roboto_Mono/RobotoMono-Italic.ttf
+          style: italic
+        - asset: lib/assets/fonts/Roboto_Mono/RobotoMono-Bold.ttf
+          weight: 700
+
+    - family: Poppins
+      fonts:
+        - asset: lib/assets/fonts/Poppins/Poppins-Italic.ttf
+          style: italic
+        - asset: lib/assets/fonts/Poppins/Poppins-Bold.ttf
+          weight: 700
+
 

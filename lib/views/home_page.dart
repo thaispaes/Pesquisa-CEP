@@ -141,8 +141,8 @@ class _HomePageState extends State<HomePage> {
     final cep = _searchCepController.text;
 
     try {
+
       final resultCep = await ViaCepService.fetchCep(cep: cep);
-      print(resultCep.localidade); // Exibindo somente a localidade no terminal
 
       setState(() {
           _response = resultCep;
@@ -150,6 +150,7 @@ class _HomePageState extends State<HomePage> {
       });
 
       _searching(false);
+
     } catch (e) {
       Fluttertoast.showToast(
         msg: 'Ocorreu um erro: $e',
