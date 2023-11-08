@@ -13,11 +13,12 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final _searchCepController = TextEditingController();
   late ResultCep _response = ResultCep();
+  late FToast fToast;
   bool _loading = false;
   bool _enableField = true;
   String? _result;
   bool _setVisible = false;
-  late FToast fToast;
+
 
   @override
   void initState() {
@@ -160,31 +161,23 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
-  Widget _circularLoading() {
-    return Container(
-      height: 15.0,
-      width: 15.0,
-      child: const CircularProgressIndicator(
-        valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
-      ),
-    );
-  }
-
-  void _showToast() {
+  void _showToastError() {
     Widget toast = Container(
-      padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 12.0),
-      decoration: BoxDecoration(
+      padding:
+      const EdgeInsets.symmetric(horizontal: 24.0, vertical: 12.0),
+      decoration:
+      BoxDecoration(
         borderRadius: BorderRadius.circular(25.0),
-        color: Colors.greenAccent,
+        color: Colors.red[600],
       ),
       child: const Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Icon(Icons.check),
+          Icon(Icons.error),
           SizedBox(
             width: 12.0,
           ),
-          Text("This is a Custom Toast"),
+          Text("O CEP não foi informado!"),
         ],
       ),
     );
@@ -195,19 +188,19 @@ class _HomePageState extends State<HomePage> {
       gravity: ToastGravity.BOTTOM,
       toastDuration: const Duration(seconds: 2),
     );
-
-    // Custom Toast Position
-    fToast.showToast(
-        child: toast,
-        toastDuration: const Duration(seconds: 2),
-        positionedToastBuilder: (context, child) {
-          return Positioned(
-            top: 16.0,
-            left: 16.0,
-            child: child,
-          );
-        });
   }
+
+  Widget _circularLoading() {
+    return Container(
+      height: 15.0,
+      width: 15.0,
+      child: const CircularProgressIndicator(
+        valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+      ),
+    );
+  }
+
+
 
   Future _searchCep() async {
     _searching(true);
@@ -226,7 +219,8 @@ class _HomePageState extends State<HomePage> {
       _searching(false);
 
     } catch (e) {
-      _showToast();
+      _showToastError();
+      _searching(false);
     }
   }
 }
