@@ -120,32 +120,132 @@ class _HomePageState extends State<HomePage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
-              EasyRichText(
-                  _response.cep != null ? "CEP: ${_response.cep}" : 'CEP: Null'
+              Text(
+                "Resultado",
+                style: TextStyle(
+                  fontFamily: 'Poppins',
+                  fontSize: 24,
+                  fontWeight: FontWeight.w400,
+                  color: Colors.blue[600],
+                  fontStyle: FontStyle.italic
+                ),
               ),
               EasyRichText(
-                  _response.logradouro != null ? "Logradouro: ${_response.logradouro}" : 'Logradouro: Null'
+                _response.cep != null ? "CEP: ${_response.cep}" : 'CEP: Null',
+                patternList: [
+                  EasyRichTextPattern(
+                    targetString: "CEP:",
+                    style: const TextStyle(
+                        fontFamily: 'RobotoMono',
+                        fontSize: 16,
+                        fontWeight: FontWeight.w400
+                    )
+                  )
+                ],
               ),
               EasyRichText(
-                  _response.localidade != null ? "Localidade: ${_response.localidade}" : 'Localidade: Null'
+                _response.logradouro != null ? "Logradouro: ${_response.logradouro}" : 'Logradouro: Null',
+                patternList: [
+                  EasyRichTextPattern(
+                      targetString: "Logradouro:",
+                      style: const TextStyle(
+                          fontFamily: 'RobotoMono',
+                          fontSize: 16,
+                          fontWeight: FontWeight.w400
+                      )
+                  )
+                ],
               ),
               EasyRichText(
-                  _response.complemento != null ? "Complemento: ${_response.complemento}" : 'Complemento: Null'
+                _response.localidade != null ? "Localidade: ${_response.localidade}" : 'Localidade: Null',
+                patternList: [
+                  EasyRichTextPattern(
+                      targetString: "Localidade:",
+                      style: const TextStyle(
+                          fontFamily: 'RobotoMono',
+                          fontSize: 16,
+                          fontWeight: FontWeight.w400
+                      )
+                  )
+                ],
               ),
               EasyRichText(
-                  _response.bairro != null ? "Bairro: ${_response.bairro}" : 'Bairro: Null'
+                _response.complemento != null ? "Complemento: ${_response.complemento}" : 'Complemento: Null',
+                patternList: [
+                  EasyRichTextPattern(
+                      targetString: "Complemento:",
+                      style: const TextStyle(
+                          fontFamily: 'RobotoMono',
+                          fontSize: 16,
+                          fontWeight: FontWeight.w400
+                      )
+                  )
+                ],
               ),
               EasyRichText(
-                  _response.uf != null ? "UF: ${_response.uf}" : 'UF: Null'
+                _response.bairro != null ? "Bairro: ${_response.bairro}" : 'Bairro: Null',
+                patternList: [
+                  EasyRichTextPattern(
+                      targetString: "Bairro:",
+                      style: const TextStyle(
+                          fontFamily: 'RobotoMono',
+                          fontSize: 16,
+                          fontWeight: FontWeight.w400
+                      )
+                  )
+                ],
               ),
               EasyRichText(
-                  _response.unidade != null ? "Unidade: ${_response.uf}" : 'Unidade: Null'
+                _response.uf != null ? "UF: ${_response.uf}" : 'UF: Null',
+                patternList: [
+                  EasyRichTextPattern(
+                      targetString: "UF:",
+                      style: const TextStyle(
+                          fontFamily: 'RobotoMono',
+                          fontSize: 16,
+                          fontWeight: FontWeight.w400
+                      )
+                  )
+                ],
               ),
               EasyRichText(
-                  _response.ibge != null ? "IBGE: ${_response.ibge}" : 'IBGE: Null'
+                _response.unidade != null ? "Unidade: ${_response.uf}" : 'Unidade: Null',
+                patternList: [
+                  EasyRichTextPattern(
+                      targetString: "Unidade:",
+                      style: const TextStyle(
+                          fontFamily: 'RobotoMono',
+                          fontSize: 16,
+                          fontWeight: FontWeight.w400
+                      )
+                  )
+                ],
               ),
               EasyRichText(
-                  _response.gia != null ? "GIA: ${_response.gia}" : 'GIA: Null'
+                _response.ibge != null ? "IBGE: ${_response.ibge}" : 'IBGE: Null',
+                patternList: [
+                  EasyRichTextPattern(
+                      targetString: "IBGE:",
+                      style: const TextStyle(
+                          fontFamily: 'RobotoMono',
+                          fontSize: 16,
+                          fontWeight: FontWeight.w400
+                      )
+                  )
+                ],
+              ),
+              EasyRichText(
+                _response.gia != null ? "GIA: ${_response.gia}" : 'GIA: Null',
+                patternList: [
+                  EasyRichTextPattern(
+                      targetString: "GIA:",
+                      style: const TextStyle(
+                          fontFamily: 'RobotoMono',
+                          fontSize: 16,
+                          fontWeight: FontWeight.w400
+                      )
+                  )
+                ],
               ),
             ],
           ),
@@ -190,6 +290,35 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
+  void _showToastSucess() {
+    Widget toast = Container(
+      padding:
+      const EdgeInsets.symmetric(horizontal: 24.0, vertical: 12.0),
+      decoration:
+      BoxDecoration(
+        borderRadius: BorderRadius.circular(25.0),
+        color: Colors.green[600],
+      ),
+      child: const Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(Icons.check),
+          SizedBox(
+            width: 12.0,
+          ),
+          Text("CEP encontrado!"),
+        ],
+      ),
+    );
+
+
+    fToast.showToast(
+      child: toast,
+      gravity: ToastGravity.BOTTOM,
+      toastDuration: const Duration(seconds: 2),
+    );
+  }
+
   Widget _circularLoading() {
     return Container(
       height: 15.0,
@@ -199,8 +328,6 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
-
-
 
   Future _searchCep() async {
     _searching(true);
@@ -216,6 +343,7 @@ class _HomePageState extends State<HomePage> {
           _setVisible = true;
       });
 
+      _showToastSucess();
       _searching(false);
 
     } catch (e) {
