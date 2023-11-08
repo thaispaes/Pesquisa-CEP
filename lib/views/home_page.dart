@@ -12,10 +12,11 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final _searchCepController = TextEditingController();
+  late ResultCep _response = ResultCep();
   bool _loading = false;
   bool _enableField = true;
   String? _result;
-  late ResultCep _response = ResultCep();
+  bool _setVisible = false;
 
 
   @override
@@ -75,42 +76,43 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget _buildResultCep() {
-    return Container(
-      margin: const EdgeInsets.only(left: 20, top: 30),
+    return Visibility(
+      visible: _setVisible == true,
       child: Padding(
-        padding: const EdgeInsets.only(bottom: 32),
+        padding: const EdgeInsets.all(22),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            RichText(
-                text: TextSpan(text: _response.cep ?? '')
-            ),
-            RichText(
-                text: TextSpan(text: _response.localidade ?? '')
-            ),
-            RichText(
-                text: TextSpan(text: _response.complemento ?? '')
-            ),
-            RichText(
-                text: TextSpan(text: _response.bairro ?? '')
-            ),
-            RichText(
-                text: TextSpan(text: _response.localidade ?? '')
-            ),
-            RichText(
-                text: TextSpan(text: _response.uf ?? '')
-            ),
-            RichText(
-                text: TextSpan(text: _response.ibge ?? '')
-            ),
-            RichText(
-                text: TextSpan(text: _response.unidade ?? '')
-            ),
-            RichText(
-                text: TextSpan(text: _response.gia ?? '')
-            ),
-          ],
-        ),
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              EasyRichText(
+                  _response.cep != null ? "CEP: ${_response.cep}" : 'CEP: Null'
+              ),
+              EasyRichText(
+                  _response.logradouro != null ? "Logradouro: ${_response.logradouro}" : 'Logradouro: Null'
+              ),
+              EasyRichText(
+                  _response.localidade != null ? "Localidade: ${_response.localidade}" : 'Localidade: Null'
+              ),
+              EasyRichText(
+                  _response.complemento != null ? "Complemento: ${_response.complemento}" : 'Complemento: Null'
+              ),
+              EasyRichText(
+                  _response.bairro != null ? "Bairro: ${_response.bairro}" : 'Bairro: Null'
+              ),
+              EasyRichText(
+                  _response.uf != null ? "UF: ${_response.uf}" : 'UF: Null'
+              ),
+              EasyRichText(
+                  _response.unidade != null ? "Unidade: ${_response.uf}" : 'Unidade: Null'
+              ),
+              EasyRichText(
+                  _response.ibge != null ? "IBGE: ${_response.ibge}" : 'IBGE: Null'
+              ),
+              EasyRichText(
+                  _response.gia != null ? "GIA: ${_response.gia}" : 'GIA: Null'
+              ),
+            ],
+          ),
       ),
     );
   }
@@ -144,6 +146,7 @@ class _HomePageState extends State<HomePage> {
 
       setState(() {
           _response = resultCep;
+          _setVisible = true;
       });
 
       _searching(false);
