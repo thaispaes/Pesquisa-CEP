@@ -11,8 +11,18 @@ void main() {
     debugShowCheckedModeBanner: false, //Barra do Debug
     home: HomePage(),
     builder: FToastBuilder(),
-    theme: ThemeData(brightness: Brightness.light, primarySwatch: Colors.amber, fontFamily: 'Poppins'),
-    darkTheme: ThemeData(brightness: Brightness.dark, primarySwatch: Colors.lightBlue, fontFamily: 'Poppins'),
+    theme: ThemeData(brightness: Brightness.light, primarySwatch: Colors.amber,
+        textTheme: const TextTheme(
+            bodyMedium: TextStyle(fontFamily: 'Poppins', fontStyle: FontStyle.normal),
+            bodySmall: TextStyle(fontFamily: 'Poppins', fontStyle: FontStyle.normal),
+            bodyLarge: TextStyle(fontFamily: 'Poppins', fontStyle: FontStyle.normal))
+    ),
+    darkTheme: ThemeData(brightness: Brightness.dark, primarySwatch: Colors.lightBlue,
+        textTheme: const TextTheme(
+            bodyMedium: TextStyle(fontFamily: 'Poppins', fontStyle: FontStyle.normal),
+            bodySmall: TextStyle(fontFamily: 'Poppins', fontStyle: FontStyle.normal),
+            bodyLarge: TextStyle(fontFamily: 'Poppins', fontStyle: FontStyle.normal))
+    ),
   ));
 }
 

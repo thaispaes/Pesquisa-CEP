@@ -20,7 +20,6 @@ class _HomePageState extends State<HomePage> {
   String? _result;
   bool _setVisible = false;
 
-
   @override
   void initState() {
     super.initState();
@@ -33,8 +32,6 @@ class _HomePageState extends State<HomePage> {
     super.dispose();
     _searchCepController.clear();
   }
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -75,7 +72,9 @@ class _HomePageState extends State<HomePage> {
           EasyRichTextPattern(
               targetString: 'Bem vindo ao',
               style: const TextStyle(
-                  fontSize: 20
+                  fontSize: 20,
+                  fontWeight: FontWeight.w500,
+                  fontStyle: FontStyle.normal
               )
           )
         ],
@@ -116,149 +115,226 @@ class _HomePageState extends State<HomePage> {
     return Visibility(
       visible: _setVisible == true,
       child: Container(
-        padding: const EdgeInsets.all(22),
-        margin: const EdgeInsets.all(16.0),
-        child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Text(
-                "Resultado",
-                style: TextStyle(
-                    fontFamily: 'Poppins',
-                    fontSize: 24,
-                    fontWeight: FontWeight.w400,
-                    color: Colors.blue[600],
-                    fontStyle: FontStyle.italic
-                ),
-              ),
-              StyledText(
-                  text: _response.cep != null ? "<bold>CEP:</bold> <values>${_response.cep}</values>" : '<bold>CEP:</bold> Null',
-                  tags: {
-                    'bold' :
-                      StyledTextTag(
-                          style: const TextStyle(
-                              fontFamily: 'RobotoMono',
-                              fontSize: 16,
-                              fontWeight: FontWeight.w400
-                          )
+        padding: const EdgeInsets.all(10),
+        margin: const EdgeInsets.all(8.0),
+        child: Card(
+              child: Column(
+                  children: [
+                    ListTile(
+                      title: Text(
+                          'CEP Encontrado',
+                          style: TextStyle(
+                              fontFamily: 'Poppins',
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.blue[600]
+                          ),
                       ),
-                    'values' :
-                        StyledTextTag(
-                          style: const TextStyle(
-                            fontFamily: 'Poppins',
-                            fontSize: 14
-                          )
-                        )
-                  }
-              ),
-              StyledText(
-                  text: _response.logradouro != null ? "<bold>Logradouro:</bold> <values>${_response.logradouro}</values>" : '<bold>Logradouro:</bold> Null',
-                  tags: {
-                    'bold' :
-                    StyledTextTag(
-                        style: const TextStyle(
-                            fontFamily: 'RobotoMono',
-                            fontSize: 16,
-                            fontWeight: FontWeight.w400
-                        )
+                    ),
+                    const Divider(),
+                    ListTile(
+                      title: StyledText(
+                          text: _response.cep != null ? "<bold>CEP:</bold> <values>${_response.cep}</values>" : '<bold>CEP:</bold> Null',
+                          tags: {
+                            'bold' :
+                            StyledTextTag(
+                                style: const TextStyle(
+                                    fontFamily: 'RobotoMono',
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold
+                                )
+                            ),
+                            'values' :
+                            StyledTextTag(
+                                style: const TextStyle(
+                                    fontFamily: 'Poppins',
+                                    fontSize: 14
+                                )
+                            )
+                          }
+                      ),
+                    ),
+                    ListTile(
+                      title: StyledText(
+                          text: _response.logradouro != null ? "<bold>Logradouro:</bold> <values>${_response.logradouro}</values>" : '<bold>Logradouro:</bold> Null',
+                          tags: {
+                            'bold' :
+                            StyledTextTag(
+                                style: const TextStyle(
+                                    fontFamily: 'RobotoMono',
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold
+                                )
+                            ),
+                            'values' :
+                            StyledTextTag(
+                                style: const TextStyle(
+                                    fontFamily: 'Poppins',
+                                    fontSize: 14
+                                )
+                            )
+                          }
+                      ),
+                    ),
+                    ListTile(
+                      title: StyledText(
+                          text: _response.localidade != null ? "<bold>Localidade:</bold> <values>${_response.localidade}</values>" : '<bold>Localidade:</bold> Null',
+                          tags: {
+                            'bold' :
+                            StyledTextTag(
+                                style: const TextStyle(
+                                    fontFamily: 'RobotoMono',
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold
+                                )
+                            ),
+                            'values' :
+                            StyledTextTag(
+                                style: const TextStyle(
+                                    fontFamily: 'Poppins',
+                                    fontSize: 14
+                                )
+                            )
+                          }
+                      ),
+                    ),
+                    ListTile(
+                      title: StyledText(
+                          text: _response.complemento != null ? "<bold>Complemento:</bold> <values>${_response.complemento}</values>" : '<bold>Complemento:</bold> Null',
+                          tags: {
+                            'bold' :
+                            StyledTextTag(
+                                style: const TextStyle(
+                                    fontFamily: 'RobotoMono',
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold
+                                )
+                            ),
+                            'values' :
+                            StyledTextTag(
+                                style: const TextStyle(
+                                    fontFamily: 'Poppins',
+                                    fontSize: 14
+                                )
+                            )
+                          }
+                      ),
+                    ),
+                    ListTile(
+                      title: StyledText(
+                          text: _response.bairro != null ? "<bold>Bairro:</bold> <values>${_response.bairro}</values>" : '<bold>Bairro:</bold> Null',
+                          tags: {
+                            'bold' :
+                            StyledTextTag(
+                                style: const TextStyle(
+                                    fontFamily: 'RobotoMono',
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold
+                                )
+                            ),
+                            'values' :
+                            StyledTextTag(
+                                style: const TextStyle(
+                                    fontFamily: 'Poppins',
+                                    fontSize: 14
+                                )
+                            )
+                          }
+                      ),
+                    ),
+                    ListTile(
+                      title: StyledText(
+                          text: _response.uf != null ? "<bold>UF:</bold> <values>${_response.uf}</values>" : '<bold>UF:</bold> Null',
+                          tags: {
+                            'bold' :
+                            StyledTextTag(
+                                style: const TextStyle(
+                                    fontFamily: 'RobotoMono',
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold
+                                )
+                            ),
+                            'values' :
+                            StyledTextTag(
+                                style: const TextStyle(
+                                    fontFamily: 'Poppins',
+                                    fontSize: 14
+                                )
+                            )
+                          }
+                      ),
+                    ),
+                    ListTile(
+                      title:  StyledText(
+                          text: _response.unidade != null ? "<bold>Unidade:</bold> <values>${_response.uf}</values>" : '<bold>Unidade:</bold> Null',
+                          tags: {
+                            'bold' :
+                            StyledTextTag(
+                                style: const TextStyle(
+                                    fontFamily: 'RobotoMono',
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold
+                                )
+                            ),
+                            'values' :
+                            StyledTextTag(
+                                style: const TextStyle(
+                                    fontFamily: 'Poppins',
+                                    fontSize: 14
+                                )
+                            )
+                          }
+                      ),
+                    ),
+                    ListTile(
+                      title: StyledText(
+                          text: _response.ibge != null ? "<bold>IBGE:</bold> <values>${_response.ibge}</values>" : '<bold>IBGE:</bold> Null',
+                          tags: {
+                            'bold' :
+                            StyledTextTag(
+                                style: const TextStyle(
+                                    fontFamily: 'RobotoMono',
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold
+                                )
+                            ),
+                            'values' :
+                            StyledTextTag(
+                                style: const TextStyle(
+                                    fontFamily: 'Poppins',
+                                    fontSize: 14
+                                )
+                            )
+                          }
+                      )
+                    ),
+                    ListTile(
+                      title: StyledText(
+                          text: _response.gia != null ? "<bold>GIA:</bold> <values>${_response.gia}</values>" : '<bold>GIA:</bold> Null',
+                          tags: {
+                            'bold' :
+                            StyledTextTag(
+                                style: const TextStyle(
+                                    fontFamily: 'RobotoMono',
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold
+                                )
+                            ),
+                            'values' :
+                            StyledTextTag(
+                                style: const TextStyle(
+                                    fontFamily: 'Poppins',
+                                    fontSize: 14
+                                )
+                            )
+                          }
+                      ),
                     )
-                  }
-              ),
-              StyledText(
-                  text: _response.localidade != null ? "<bold>Localidade:</bold> <values>${_response.localidade}</values>" : '<bold>Localidade:</bold> Null',
-                  tags: {
-                    'bold' :
-                    StyledTextTag(
-                        style: const TextStyle(
-                            fontFamily: 'RobotoMono',
-                            fontSize: 16,
-                            fontWeight: FontWeight.w400
-                        )
-                    )
-                  }
-              ),
-              StyledText(
-                  text: _response.complemento != null ? "<bold>Complemento:</bold> <values>${_response.complemento}</values>" : '<bold>Complemento:</bold> Null',
-                  tags: {
-                    'bold' :
-                    StyledTextTag(
-                        style: const TextStyle(
-                            fontFamily: 'RobotoMono',
-                            fontSize: 16,
-                            fontWeight: FontWeight.w400
-                        )
-                    )
-                  }
-              ),
-              StyledText(
-                  text: _response.bairro != null ? "<bold>Bairro:</bold> <values>${_response.bairro}</values>" : '<bold>Bairro:</bold> Null',
-                  tags: {
-                    'bold' :
-                    StyledTextTag(
-                        style: const TextStyle(
-                            fontFamily: 'RobotoMono',
-                            fontSize: 16,
-                            fontWeight: FontWeight.w400
-                        )
-                    )
-                  }
-              ),
-              StyledText(
-                  text: _response.uf != null ? "<bold>UF:</bold> <values>${_response.uf}</values>" : '<bold>UF:</bold> Null',
-                  tags: {
-                    'bold' :
-                    StyledTextTag(
-                        style: const TextStyle(
-                            fontFamily: 'RobotoMono',
-                            fontSize: 16,
-                            fontWeight: FontWeight.w400
-                        )
-                    )
-                  }
-              ),
-              StyledText(
-                  text: _response.unidade != null ? "<bold>Unidade:</bold> <values>${_response.uf}</values>" : '<bold>Unidade:</bold> Null',
-                  tags: {
-                    'bold' :
-                    StyledTextTag(
-                        style: const TextStyle(
-                            fontFamily: 'RobotoMono',
-                            fontSize: 16,
-                            fontWeight: FontWeight.w400
-                        )
-                    )
-                  }
-              ),
-              StyledText(
-                  text: _response.ibge != null ? "<bold>IBGE:</bold> <values>${_response.ibge}</values>" : '<bold>IBGE:</bold> Null',
-                  tags: {
-                    'bold' :
-                    StyledTextTag(
-                        style: const TextStyle(
-                            fontFamily: 'RobotoMono',
-                            fontSize: 16,
-                            fontWeight: FontWeight.w400
-                        )
-                    )
-                  }
-              ),
-              StyledText(
-                  text: _response.gia != null ? "<bold>GIA:</bold> <values>${_response.gia}</values>" : '<bold>GIA:</bold> Null',
-                  tags: {
-                    'bold' :
-                    StyledTextTag(
-                        style: const TextStyle(
-                            fontFamily: 'RobotoMono',
-                            fontSize: 16,
-                            fontWeight: FontWeight.w400
-                        )
-                    )
-                  }
-              ),
-            ],
-          ),
-      ),
-    );
+                  ],
+                ),
+            ),
+        ),
+      );
   }
 
   void _searching(bool enable) {
