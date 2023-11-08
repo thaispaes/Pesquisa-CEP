@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:pesquisa_cep/views/home_page.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 
 void main() {
@@ -9,10 +10,9 @@ void main() {
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false, //Barra do Debug
     home: HomePage(),
-    theme: ThemeData(brightness: Brightness.light, primarySwatch: Colors.amber),
-    darkTheme: ThemeData(
-      brightness: Brightness.dark, primarySwatch: Colors.lightBlue
-    ),
+    builder: FToastBuilder(),
+    theme: ThemeData(brightness: Brightness.light, primarySwatch: Colors.amber, fontFamily: 'Poppins'),
+    darkTheme: ThemeData(brightness: Brightness.dark, primarySwatch: Colors.lightBlue, fontFamily: 'Poppins'),
   ));
 }
 

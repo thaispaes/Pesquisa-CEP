@@ -17,13 +17,22 @@ class _HomePageState extends State<HomePage> {
   bool _enableField = true;
   String? _result;
   bool _setVisible = false;
+  late FToast fToast;
 
+  @override
+  void initState() {
+    super.initState();
+    fToast = FToast();
+    fToast.init(context);
+  }
 
   @override
   void dispose() {
     super.dispose();
     _searchCepController.clear();
   }
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -37,11 +46,37 @@ class _HomePageState extends State<HomePage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
+            _headerSearchCepText(),
             _buildSearchCepTextField(),
             _buildSearchCepButton(),
             _buildResultCep()
           ],
         ),
+      ),
+    );
+  }
+
+  Widget _headerSearchCepText() {
+    return Padding(
+      padding: EdgeInsets.only(top: 10, bottom: 32),
+      child: EasyRichText(
+        'Bem vindo ao Consultar CEP',
+        patternList: [
+          EasyRichTextPattern(
+              targetString: 'Consultar CEP',
+              style: TextStyle(
+                fontSize: 20,
+                  color: Colors.blue[600],
+                  fontWeight: FontWeight.bold
+              )
+          ),
+          EasyRichTextPattern(
+              targetString: 'Bem vindo ao',
+              style: const TextStyle(
+                  fontSize: 20
+              )
+          )
+        ],
       ),
     );
   }
@@ -135,6 +170,45 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
+  void _showToast() {
+    Widget toast = Container(
+      padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 12.0),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(25.0),
+        color: Colors.greenAccent,
+      ),
+      child: const Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(Icons.check),
+          SizedBox(
+            width: 12.0,
+          ),
+          Text("This is a Custom Toast"),
+        ],
+      ),
+    );
+
+
+    fToast.showToast(
+      child: toast,
+      gravity: ToastGravity.BOTTOM,
+      toastDuration: const Duration(seconds: 2),
+    );
+
+    // Custom Toast Position
+    fToast.showToast(
+        child: toast,
+        toastDuration: const Duration(seconds: 2),
+        positionedToastBuilder: (context, child) {
+          return Positioned(
+            top: 16.0,
+            left: 16.0,
+            child: child,
+          );
+        });
+  }
+
   Future _searchCep() async {
     _searching(true);
 
@@ -152,11 +226,7 @@ class _HomePageState extends State<HomePage> {
       _searching(false);
 
     } catch (e) {
-      Fluttertoast.showToast(
-        msg: 'Ocorreu um erro: $e',
-        backgroundColor: Colors.red,
-        textColor: Colors.white,
-      );
+      _showToast();
     }
   }
 }
